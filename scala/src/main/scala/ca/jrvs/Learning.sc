@@ -1,19 +1,24 @@
+// constant
 val x = 3.0 + 1
 
+// expressions
 var number = {val x = 2 * 2; x + 40}
 
+// scala f strings
 val source = 3
 var badSong = {
   s"$source bling"
 }
 println(badSong)
 
+// in expr, the last statement is returned
 var band = {
   val name = "sublime"
   name
 }
 println(band)
 
+// some more examples
 class Bar {
   def apply: Unit = new Bar
 }
