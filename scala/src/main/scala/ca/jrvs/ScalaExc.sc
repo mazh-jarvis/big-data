@@ -33,7 +33,11 @@
  */
 val ls = List.range(0,10)
 //write you solution here
-
+ls.size
+ls.head
+ls.last
+ls.take(5)
+ls.takeRight(5)
 
 /**
  * Double each number from the numList and return a flatten list
@@ -43,8 +47,9 @@ val ls = List.range(0,10)
  */
 val numList = List(List(1,2), List(3));
 //write you solution here
-
-
+val double = (x:Int) => x*2
+numList.flatMap(_.map(double))
+//observe: flatMap combines map and flatten as a unified transformation
 
 /**
  * Sum List.range(1,11) in three ways
@@ -54,7 +59,9 @@ val numList = List(List(1,2), List(3));
  * https://stackoverflow.com/questions/7764197/difference-between-foldleft-and-reduceleft-in-scala
  */
 //write you solution here
-
+var sum = List.range(1, 11).sum
+sum = List.range(1, 11).reduce(_+_)
+sum = List.range(1, 11).foldLeft(0)(_+_)
 
 /**
  * Practice Map and Optional
