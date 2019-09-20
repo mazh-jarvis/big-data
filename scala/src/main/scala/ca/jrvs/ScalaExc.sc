@@ -1,3 +1,4 @@
+
 /**
  * Instruction:
  *
@@ -115,7 +116,9 @@ val names2 = List("Amy", "Bob", "Chris", "Dann")
  * lines: List[String] = List(id,name,city, 1,amy,toronto, 2,bob,calgary, 3,chris,toronto, 4,dann,montreal)
  */
 //write you solution here
-
+import scala.io.{Source, StdIn}
+val myFile = "/home/milad/code/jarvis/hadoop/big-data/scala/sample.txt";
+val sql1 = Source.fromFile(myFile).getLines().toList
 
 /**
  * SQL questions2:
@@ -124,7 +127,11 @@ val names2 = List("Amy", "Bob", "Chris", "Dann")
  * e.g. employees: List[Employee] = List(Employee(1,amy,toronto), Employee(2,bob,calgary), Employee(3,chris,toronto), Employee(4,dann,montreal))
  */
 //write you solution here
-
+case class Employee2(id: Int, name: String, city: String)
+val employees2 = sql1.map(_.split(",")).map(e => {
+  val Array(t1, t2, t3) = e
+  Employee2(t1.toInt, t2, t3)
+})
 
 /**
  * SQL questions3:
@@ -235,7 +242,6 @@ numList.flatMap(n => n.map(_+1))
 
 //read file lines into a list
 //lines: List[String] = List(id,name,city, 1,amy,toronto, 2,bob,calgary, 3,chris,toronto, 4,dann,montreal)
-import scala.io.Source
 val fileName = "/Users/ewang/dev/jrvs/bootcamp/bigdata/scala/src/main/resources/employees.csv"
 val bs =  Source.fromFile(fileName);
 val lines = bs.getLines.toList
