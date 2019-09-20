@@ -86,6 +86,8 @@ countryMap.getOrElse("edward", "n/a")
  */
 val names = List("Amy", "Sam", "Eric", "Amy")
 //write you solution here
+// using list comprehension
+val map2 = for (name:String <- names) yield (name, countryMap.getOrElse(name, "N/A"))
 
 /**
  * Map question3:
@@ -95,10 +97,8 @@ val names = List("Amy", "Sam", "Eric", "Amy")
  * hint: map(get_value_from_map) ; groupBy country; map to (country,count)
  */
 //write you solution here
-
-
-
-
+val map3 = map2.groupBy(_._2)
+  .map{ case(k,v) => (k, v.size) }
 
 /**
  * number each name in the list from 1 to n
