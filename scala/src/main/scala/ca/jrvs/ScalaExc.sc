@@ -142,10 +142,18 @@ val employees2 = sql1.map(_.split(",")).map(e => {
  * FROM employees
  *
  * result:
- * upperCity: List[Employee] = List(Employee(1,amy,TORONTO,20), Employee(2,bob,CALGARY,19), Employee(3,chris,TORONTO,20), Employee(4,dann,MONTREAL,21), Employee(5,eric,TORONTO,22))
- */
+ * upperCity: List[Employee] = List(Employee(1,amy,TORONTO,20), Employee(2,bob,CALGARY,19),
+  * Employee(3,chris,TORONTO,20), Employee(4,dann,MONTREAL,21), Employee(5,eric,TORONTO,22))
+  */
 //write you solution here
-
+val upperMap = (e: Employee2) => {
+    Employee2(
+    e.id,
+    e.name,
+    e.city.toUpperCase()
+  )
+}
+val _upperCity = employees2.map(upperMap)
 
 
 /**
@@ -160,7 +168,7 @@ val employees2 = sql1.map(_.split(",")).map(e => {
  * res5: List[Employee] = List(Employee(1,amy,TORONTO,20), Employee(3,chris,TORONTO,20), Employee(5,eric,TORONTO,22))
  */
 //write you solution here
-
+val sql4 = employees2.filter(_.city=="toronto").map(upperMap)
 
 /**
  * SQL questions5:
