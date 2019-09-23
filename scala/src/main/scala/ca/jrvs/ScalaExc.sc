@@ -107,7 +107,8 @@ val map3 = map2.groupBy(_._2)
  */
 val names2 = List("Amy", "Bob", "Chris", "Dann")
 //write you solution here
-
+val nums2 = List.range(1, names2.length+1) //for (i <- names.size) yield i
+val names2Numbered =  names2.zip(nums2)
 
 /**
  * SQL questions1:
