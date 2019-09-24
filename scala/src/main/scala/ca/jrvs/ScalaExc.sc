@@ -119,7 +119,7 @@ val names2Numbered =  names2.zip(nums2)
 //write you solution here
 import scala.io.{Source, StdIn}
 val myFile = "/home/milad/code/jarvis/hadoop/big-data/scala/sample.txt";
-val sql1 = Source.fromFile(myFile).getLines().toList
+val sql1 = Source.fromFile(myFile).getLines().drop(1).toList
 
 /**
  * SQL questions2:
@@ -128,10 +128,10 @@ val sql1 = Source.fromFile(myFile).getLines().toList
  * e.g. employees: List[Employee] = List(Employee(1,amy,toronto), Employee(2,bob,calgary), Employee(3,chris,toronto), Employee(4,dann,montreal))
  */
 //write you solution here
-case class Employee2(id: Int, name: String, city: String)
+case class Employee2(id: Int, name: String, city: String, age: Int)
 val employees2 = sql1.map(_.split(",")).map(e => {
-  val Array(t1, t2, t3) = e
-  Employee2(t1.toInt, t2, t3)
+  val Array(t1, t2, t3, t4) = e
+  Employee2(t1.toInt, t2, t3, t4.toInt)
 })
 
 /**
@@ -150,7 +150,8 @@ val upperMap = (e: Employee2) => {
     Employee2(
     e.id,
     e.name,
-    e.city.toUpperCase()
+    e.city.toUpperCase(),
+    e.age
   )
 }
 val _upperCity = employees2.map(upperMap)
@@ -183,7 +184,9 @@ val sql4 = employees2.filter(_.city=="toronto").map(upperMap)
  * cityNum: scala.collection.immutable.Map[String,Int] = Map(CALGARY -> 1, TORONTO -> 3, MONTREAL -> 1)
  */
 //write you solution here
-
+val sql5 = employees2.map(upperMap).groupBy(_.city).map{
+  case(k,v) => k -> v.length
+}
 
 /**
  * SQL questions6:
@@ -198,7 +201,9 @@ val sql4 = employees2.filter(_.city=="toronto").map(upperMap)
  * res6: scala.collection.immutable.Map[(String, Int),Int] = Map((MONTREAL,21) -> 1, (CALGARY,19) -> 1, (TORONTO,20) -> 2, (TORONTO,22) -> 1)
  */
 //write you solution here
-
+val sql6 = employees2.groupBy(e => (e.city, e.age)).map{
+  case(k,v) => k -> v.length
+}
 
 
 
