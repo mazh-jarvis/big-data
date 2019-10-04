@@ -16,7 +16,7 @@ Spark is faster due to the fact that it stores data in memory, whereas MR always
 
 ### Shared variables
 
-A workaround for closures, which should be avoided in cluster mode if the closure is used after the scope(leads to unpredictable results).
+A workaround for closures, which should be avoided in cluster mode since the variable(s) are copied across executors(leads to unpredictable results).
 
 * Broadcast variables
 * Accumulator 
